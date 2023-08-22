@@ -1,5 +1,5 @@
 // data
-const workSlides = {
+const workSlider = {
   slides: [
     {
       images: [
@@ -44,8 +44,52 @@ const workSlides = {
   ],
 };
 
-const WorkSlider = () => {
-  return <div>Work Slider</div>;
-};
+// import swiper  react  components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// import swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+// import required modules 
+import { Pagination } from 'swiper';
+
+// icons
+import { BsArrowRight } from 'react-icons/bs';
+// next image 
+import Image from 'next/image';
+
+function WorkSlider() {
+  return (
+    <Swiper
+      spaceBetween={10}
+      pagination={{
+        clickable: true
+      }}
+      modules={[Pagination]}
+      className='h-[280px] sm:h-[480px]'
+    >
+      {workSlider.slides.map((slide, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <div className='grid grid-cols-2 grid-rows-2 gap-4 cursor-pointer'>
+              {slide.images.map((image, index) => {
+                return (
+                  <div>
+                    <div>
+                      {/* image */}
+                      <Image src={image.path} width={500} height={300} alt='' />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </SwiperSlide>
+        )
+      })}
+      Service Slider</Swiper>
+  );
+}
 
 export default WorkSlider;
